@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William Fagundes</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS (Animate on Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Estilos Customizados -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a1a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .glass-effect {
+            background: rgba(10, 10, 30, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neon-text {
+            text-shadow:
+                0 0 5px rgba(0, 255, 255, 0.8),
+                0 0 10px rgba(0, 255, 255, 0.8),
+                0 0 20px rgba(0, 255, 255, 0.8),
+                0 0 40px rgba(0, 191, 255, 0.8),
+                0 0 80px rgba(0, 191, 255, 0.8);
+        }
+        .neon-box-shadow {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: rgba(0, 255, 255, 0.3);
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 30px;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 30px;
+        }
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 15px;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #00ffff;
+            border: 3px solid #0a0a1a;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            text-align: left;
+        }
+        .portfolio-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        .logo-img {
+            width: 120px; /* Ajuste o tamanho conforme necessário */
+            filter: drop-shadow(0 0 3px rgba(0, 255, 255, 0.7))
+                    drop-shadow(0 0 8px rgba(0, 255, 255, 0.5));
+            transition: all 0.3s ease-in-out;
+        }
+        .logo-container:hover .logo-img {
+            filter: drop-shadow(0 0 5px rgba(0, 255, 255, 1))
+                    drop-shadow(0 0 15px rgba(0, 255, 255, 0.7));
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Canvas para o fundo de partículas -->
+    <div id="particles-js"></div>
+
+    <!-- Navegação -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="logo-container">
+                <img src="logo.png" alt="Logo William Fagundes" class="logo-img">
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#sobre" class="text-gray-300 hover:text-cyan-400 transition">Sobre Mim</a>
+                <a href="#experiencia" class="text-gray-300 hover:text-cyan-400 transition">Experiência</a>
+                <a href="#formacao" class="text-gray-300 hover:text-cyan-400 transition">Formação</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-cyan-400 transition">Portfólio</a>
+                <a href="#contato" class="text-gray-300 hover:text-cyan-400 transition">Contato</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="relative z-10">
+        <!-- Seção Hero -->
+        <section id="hero" class="h-screen flex items-center justify-center text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Olá, eu sou <span class="text-cyan-100 neon-text">William Fagundes</span></h1>
+                <h2 class="text-2xl md:text-4xl text-gray-300"><span id="typed-element"></span></h2>
+            </div>
+        </section>
+
+        <!-- Seção Sobre Mim -->
+        <section id="sobre" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 neon-text" data-aos="fade-down">Perfil Pessoal</h2>
+                <div class="flex flex-col md:flex-row items-center gap-12 glass-effect p-8 rounded-lg">
+                    <div class="w-full md:w-1/3" data-aos="fade-right">
+                        <img src="foto.jpeg" alt="William Fagundes" class="rounded-full w-64 h-64 mx-auto border-4 border-cyan-100 neon-box-shadow">
+                    </div>
+                    <div class="w-full md:w-2/3" data-aos="fade-left">
+                        <h3 class="text-2xl font-semibold text-cyan-400 mb-4">Enxergo cada linha de código como uma oportunidade.</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                           Como desenvolvedor, enxergo cada linha de código como uma oportunidade de criar algo extraordinário. Com habilidade técnica e criatividade, transformo ideias em realidade digital, buscando sempre a excelência em cada projeto.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Experiência -->
+        <section id="experiencia" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-16 neon-text" data-aos="fade-down">Experiência Profissional</h2>
+                <div class="relative timeline">
+                    <!-- Item 1 -->
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-content glass-effect p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-cyan-400">Estágio</h3>
+                            <p class="text-sm text-gray-400 mb-2">Rede Sarah | Atualmente</p>
+                            <p class="text-gray-300">Ajudando a equipe de TI com chamados e outras necessidades.</p>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-content glass-effect p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-cyan-400">Programador Full Stack</h3>
+                            <p class="text-sm text-gray-400 mb-2">Affect Gamer | Atualmente</p>
+                            <p class="text-gray-300">Desenvolvimento de soluções com JavaScript e Firebase, com foco em autenticação, Realtime Database, performance e segurança para criar sistemas escaláveis e com ótima UX.</p>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-content glass-effect p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-cyan-400">Modder</h3>
+                            <p class="text-sm text-gray-400 mb-2">GTA San Andreas (MTA) | 2020</p>
+                            <p class="text-gray-300">Programador de diversas modificações para o jogo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Formação e Qualificações -->
+        <section id="formacao" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 neon-text" data-aos="fade-down">Formação e Qualificações</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Formação Acadêmica -->
+                    <div class="glass-effect p-6 rounded-lg" data-aos="fade-up">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Formação Acadêmica</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold">Engenharia de Software</h4>
+                            <p class="text-sm text-gray-400">IBMEC | Jun. 2024 - Dez. 2026</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Análise e Desenvolvimento de Sistemas</h4>
+                            <p class="text-sm text-gray-400">IBMEC | Jan. 2022 - Jun. 2024</p>
+                        </div>
+                    </div>
+                    <!-- Certificações e Cursos -->
+                    <div class="glass-effect p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Cursos e Certificados</h3>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li>Formação UX Design - Alura</li>
+                            <li>Curso UX Design - Alura</li>
+                            <li>Accredited SCRUM Fundamentals</li>
+                            <li>Scrum Foundation Prof. Cert.</li>
+                        </ul>
+                    </div>
+                    <!-- Idiomas -->
+                    <div class="glass-effect p-6 rounded-lg" data-aos="fade-up" data-aos-delay="400">
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-4">Idiomas</h3>
+                        <p class="text-gray-300">Inglês - Intermediário</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Portfólio -->
+        <section id="portfolio" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 neon-text" data-aos="fade-down">Meu Portfólio</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Adicione seus projetos aqui -->
+                    <!-- Projeto 1 -->
+                    <div class="portfolio-card glass-effect rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 neon-box-shadow" data-aos="fade-up" data-tilt>
+                        <img src="obfuscadeado.png" alt="Projeto 1" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-cyan-400 mb-2">obfuscadeado</h3>
+                            <p class="text-gray-300 mb-4">Breve descrição do projeto, os desafios e as tecnologias utilizadas (ex: React, Tailwind CSS).</p>
+                            <a href="https://obfuscadeado.vercel.app/" target="_blank" class="text-cyan-400 hover:text-white font-semibold">Ver Projeto &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Projeto 2 -->
+                    <div class="portfolio-card glass-effect rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 neon-box-shadow" data-aos="fade-up" data-aos-delay="200" data-tilt>
+                        <img src="BBZ.png" alt="Projeto 2" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-cyan-400 mb-2">BBZ Shop</h3>
+                            <p class="text-gray-300 mb-4">Breve descrição do projeto, os desafios e as tecnologias utilizadas (ex: Vue.js, Node.js).</p>
+                            <a href="https://bbz-shop.vercel.app/" target="_blank" class="text-cyan-400 hover:text-white font-semibold">Ver Projeto &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Projeto 3 -->
+                    <div class="portfolio-card glass-effect rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 neon-box-shadow" data-aos="fade-up" data-aos-delay="400" data-tilt>
+                        <img src="https://placehold.co/600x400/1a1a2e/ffff00?text=Projeto+3" alt="Projeto 3" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-cyan-400 mb-2">Nome do Projeto 3</h3>
+                            <p class="text-gray-300 mb-4">Breve descrição do projeto, os desafios e as tecnologias utilizadas (ex: Next.js, GraphQL).</p>
+                            <a href="#" target="_blank" class="text-cyan-400 hover:text-white font-semibold">Ver Projeto &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Contato -->
+        <section id="contato" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-4xl font-bold text-center mb-8 neon-text" data-aos="fade-down">Vamos Conversar?</h2>
+                 <p class="text-gray-300 max-w-2xl mx-auto mb-12" data-aos="fade-up">
+                    Estou sempre aberto a novas oportunidades e projetos desafiadores. Se você tem uma ideia, uma vaga ou simplesmente quer trocar uma ideia sobre tecnologia, não hesite em me contatar!
+                 </p>
+                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4" data-aos="zoom-in">
+                     <a href="https://wa.me/5521984108411" target="_blank" class="inline-flex items-center justify-center bg-green-500 text-white font-bold py-3 px-8 rounded-full hover:bg-green-400 transition-all duration-300 neon-box-shadow w-full sm:w-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-2"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.847 6.062l-1.011 3.712 3.717-1.005.004.002z"/></svg>
+                        WhatsApp
+                     </a>
+                 </div>
+                 <div class="flex justify-center space-x-6 mt-12" data-aos="fade-up">
+                    <a href="https://github.com/F4R1xx" target="_blank" class="text-gray-400 hover:text-cyan-400 transition">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/william-dev-fagundes/" target="_blank" class="text-gray-400 hover:text-cyan-400 transition">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-6">
+        <p class="text-gray-500">&copy; 2025 - Criado com por William Fagundes.</p>
+    </footer>
+
+    <!-- Scripts JS -->
+    <!-- particles.js para o fundo animado -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Typed.js para o efeito de digitação -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- AOS (Animate on Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- vanilla-tilt.js para o efeito 3D nos cards -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+
+    <script>
+        // Inicialização do AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Configuração do Particles.js
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#00ffff"
+                },
+                "shape": {
+                    "type": "circle",
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00ffff",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "repulse": {
+                        "distance": 100,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Configuração do Typed.js
+        var typed = new Typed('#typed-element', {
+            strings: ['Desenvolvedor Full-Stack', 'Especialista em Firebase', 'Entusiasta de JavaScript', 'Apaixonado por UX Design'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+        
+        // Efeito de "blur" no header ao rolar a página
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('glass-effect');
+            } else {
+                header.classList.remove('glass-effect');
+            }
+        });
+
+        // Inicialização do Vanilla-tilt.js
+        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+		    max: 15,
+		    speed: 400,
+            glare: true,
+            "max-glare": 0.5,
+	    });
+
+    </script>
+</body>
+</html>
