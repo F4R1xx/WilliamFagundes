@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>William Fagundes</title>
+    <title>William Fagundes - Desenvolvedor</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo.png">
@@ -21,12 +21,14 @@
 
     <!-- Estilos Customizados -->
     <style>
+        /* Estilos base para o corpo e fontes */
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #0a0a1a;
             color: #e0e0e0;
             overflow-x: hidden;
         }
+        /* Fundo de partículas fixo */
         #particles-js {
             position: fixed;
             width: 100%;
@@ -35,12 +37,14 @@
             left: 0;
             z-index: -1;
         }
+        /* Efeito de vidro para elementos */
         .glass-effect {
             background: rgba(10, 10, 30, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        /* Efeito neon para textos de destaque */
         .neon-text {
             text-shadow:
                 0 0 5px rgba(0, 255, 255, 0.8),
@@ -49,9 +53,24 @@
                 0 0 40px rgba(0, 191, 255, 0.8),
                 0 0 80px rgba(0, 191, 255, 0.8);
         }
+        /* Sombra com efeito neon para caixas */
         .neon-box-shadow {
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
         }
+        /* Estilos da logo */
+        .logo-img {
+            width: 120px;
+            filter: drop-shadow(0 0 3px rgba(0, 255, 255, 0.7))
+                    drop-shadow(0 0 8px rgba(0, 255, 255, 0.5));
+            transition: all 0.3s ease-in-out;
+        }
+        .logo-container:hover .logo-img {
+            filter: drop-shadow(0 0 5px rgba(0, 255, 255, 1))
+                    drop-shadow(0 0 15px rgba(0, 255, 255, 0.7));
+            transform: scale(1.05);
+        }
+
+        /* --- TIMELINE DESKTOP --- */
         .timeline::before {
             content: '';
             position: absolute;
@@ -65,6 +84,7 @@
         .timeline-item {
             position: relative;
             width: 50%;
+            margin-bottom: 2rem; /* Espaçamento entre itens */
         }
         .timeline-item:nth-child(odd) {
             left: 0;
@@ -93,20 +113,33 @@
         .timeline-item:nth-child(even) .timeline-content {
             text-align: left;
         }
-        .portfolio-card {
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
-        }
-        .logo-img {
-            width: 120px; /* Ajuste o tamanho conforme necessário */
-            filter: drop-shadow(0 0 3px rgba(0, 255, 255, 0.7))
-                    drop-shadow(0 0 8px rgba(0, 255, 255, 0.5));
-            transition: all 0.3s ease-in-out;
-        }
-        .logo-container:hover .logo-img {
-            filter: drop-shadow(0 0 5px rgba(0, 255, 255, 1))
-                    drop-shadow(0 0 15px rgba(0, 255, 255, 0.7));
-            transform: scale(1.05);
+
+        /* --- ESTILOS RESPONSIVOS --- */
+        @media (max-width: 767px) {
+            /* Ajuste de fontes para mobile para evitar resizing */
+            h1 { font-size: 2.5rem !important; } /* 40px */
+            h2 { font-size: 2rem !important; }   /* 32px */
+            h3 { font-size: 1.25rem !important; } /* 20px */
+
+            /* --- TIMELINE MOBILE --- */
+            .timeline::before {
+                left: 8px;
+                transform: translateX(0);
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 40px;
+                padding-right: 0;
+                left: 0 !important;
+            }
+            .timeline-dot {
+                left: 8px;
+                transform: translateX(-50%);
+            }
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                text-align: left;
+            }
         }
     </style>
 </head>
@@ -116,13 +149,14 @@
     <div id="particles-js"></div>
 
     <!-- Navegação -->
-    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="logo-container">
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-effect">
+        <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-center md:justify-between items-center">
+            <a href="#" class="logo-container z-50">
                 <img src="logo.png" alt="Logo William Fagundes" class="logo-img">
             </a>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#sobre" class="text-gray-300 hover:text-cyan-400 transition">Sobre Mim</a>
+            <!-- Menu para Desktop -->
+            <div class="hidden md:flex space-x-8 items-center text-base">
+                <a href="#sobre" class="text-gray-300 hover:text-cyan-400 transition whitespace-nowrap">Sobre Mim</a>
                 <a href="#experiencia" class="text-gray-300 hover:text-cyan-400 transition">Experiência</a>
                 <a href="#formacao" class="text-gray-300 hover:text-cyan-400 transition">Formação</a>
                 <a href="#portfolio" class="text-gray-300 hover:text-cyan-400 transition">Portfólio</a>
@@ -131,24 +165,24 @@
         </nav>
     </header>
 
-    <main class="relative z-10">
+    <main class="relative z-10 pt-20"> <!-- Adicionado padding-top para não sobrepor o header -->
         <!-- Seção Hero -->
-        <section id="hero" class="h-screen flex items-center justify-center text-center">
-            <div class="container mx-auto px-6">
+        <section id="hero" class="h-screen flex items-center justify-center text-center -mt-20"> <!-- Ajuste de margem para compensar o padding -->
+            <div class="container mx-auto px-4 sm:px-6">
                 <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Olá, eu sou <span class="text-cyan-100 neon-text">William Fagundes</span></h1>
-                <h2 class="text-2xl md:text-4xl text-gray-300"><span id="typed-element"></span></h2>
+                <h2 class="text-xl md:text-4xl text-gray-300"><span id="typed-element"></span></h2>
             </div>
         </section>
 
         <!-- Seção Sobre Mim -->
         <section id="sobre" class="py-20">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-4xl font-bold text-center mb-12 neon-text" data-aos="fade-down">Perfil Pessoal</h2>
-                <div class="flex flex-col md:flex-row items-center gap-12 glass-effect p-8 rounded-lg">
-                    <div class="w-full md:w-1/3" data-aos="fade-right">
-                        <img src="foto.jpeg" alt="William Fagundes" class="rounded-full w-64 h-64 mx-auto border-4 border-cyan-100 neon-box-shadow">
+                <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 glass-effect p-8 rounded-lg">
+                    <div class="w-full md:w-1/3 flex-shrink-0" data-aos="fade-right">
+                        <img src="foto.jpeg" alt="William Fagundes" class="rounded-full w-48 h-48 md:w-64 md:h-64 mx-auto border-4 border-cyan-100 neon-box-shadow">
                     </div>
-                    <div class="w-full md:w-2/3" data-aos="fade-left">
+                    <div class="w-full md:w-2/3 text-center md:text-left" data-aos="fade-left">
                         <h3 class="text-2xl font-semibold text-cyan-400 mb-4">Enxergo cada linha de código como uma oportunidade.</h3>
                         <p class="text-gray-300 leading-relaxed">
                            Como desenvolvedor, enxergo cada linha de código como uma oportunidade de criar algo extraordinário. Com habilidade técnica e criatividade, transformo ideias em realidade digital, buscando sempre a excelência em cada projeto.
@@ -160,11 +194,12 @@
 
         <!-- Seção Experiência -->
         <section id="experiencia" class="py-20">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-4xl font-bold text-center mb-16 neon-text" data-aos="fade-down">Experiência Profissional</h2>
                 <div class="relative timeline">
                     <!-- Item 1 -->
-                    <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-item" data-aos="fade-up">
+                        <div class="timeline-dot"></div>
                         <div class="timeline-content glass-effect p-6 rounded-lg">
                             <h3 class="text-xl font-bold text-cyan-400">Estágio</h3>
                             <p class="text-sm text-gray-400 mb-2">Rede Sarah | Atualmente</p>
@@ -172,15 +207,17 @@
                         </div>
                     </div>
                     <!-- Item 2 -->
-                    <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-item" data-aos="fade-up">
+                         <div class="timeline-dot"></div>
                         <div class="timeline-content glass-effect p-6 rounded-lg">
                             <h3 class="text-xl font-bold text-cyan-400">Programador Full Stack</h3>
                             <p class="text-sm text-gray-400 mb-2">Affect Gamer | Atualmente</p>
-                            <p class="text-gray-300">Desenvolvimento de soluções com JavaScript e Firebase, com foco em autenticação, Realtime Database, performance e segurança para criar sistemas escaláveis e com ótima UX.</p>
+                            <p class="text-gray-300">Desenvolvimento de soluções com JavaScript e Firebase, com foco em autenticação, Realtime Database, performance e segurança.</p>
                         </div>
                     </div>
                     <!-- Item 3 -->
-                    <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-item" data-aos="fade-up">
+                         <div class="timeline-dot"></div>
                         <div class="timeline-content glass-effect p-6 rounded-lg">
                             <h3 class="text-xl font-bold text-cyan-400">Modder</h3>
                             <p class="text-sm text-gray-400 mb-2">GTA San Andreas (MTA) | 2020</p>
@@ -193,11 +230,11 @@
 
         <!-- Seção Formação e Qualificações -->
         <section id="formacao" class="py-20">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-4xl font-bold text-center mb-12 neon-text" data-aos="fade-down">Formação e Qualificações</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Formação Acadêmica -->
-                    <div class="glass-effect p-6 rounded-lg" data-aos="fade-up">
+                    <!-- Card de Formação -->
+                    <div class="glass-effect p-6 rounded-lg flex flex-col" data-aos="fade-up">
                         <h3 class="text-2xl font-bold text-cyan-400 mb-4">Formação Acadêmica</h3>
                         <div class="mb-4">
                             <h4 class="font-semibold">Engenharia de Software</h4>
@@ -208,18 +245,18 @@
                             <p class="text-sm text-gray-400">IBMEC | Jan. 2022 - Jun. 2024</p>
                         </div>
                     </div>
-                    <!-- Certificações e Cursos -->
-                    <div class="glass-effect p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Card de Cursos -->
+                    <div class="glass-effect p-6 rounded-lg flex flex-col" data-aos="fade-up" data-aos-delay="200">
                         <h3 class="text-2xl font-bold text-cyan-400 mb-4">Cursos e Certificados</h3>
-                        <ul class="list-disc list-inside text-gray-300">
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
                             <li>Formação UX Design - Alura</li>
                             <li>Curso UX Design - Alura</li>
                             <li>Accredited SCRUM Fundamentals</li>
                             <li>Scrum Foundation Prof. Cert.</li>
                         </ul>
                     </div>
-                    <!-- Idiomas -->
-                    <div class="glass-effect p-6 rounded-lg" data-aos="fade-up" data-aos-delay="400">
+                    <!-- Card de Idiomas -->
+                    <div class="glass-effect p-6 rounded-lg flex flex-col" data-aos="fade-up" data-aos-delay="400">
                         <h3 class="text-2xl font-bold text-cyan-400 mb-4">Idiomas</h3>
                         <p class="text-gray-300">Inglês - Intermediário</p>
                     </div>
@@ -229,35 +266,34 @@
 
         <!-- Seção Portfólio -->
         <section id="portfolio" class="py-20">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-4xl font-bold text-center mb-12 neon-text" data-aos="fade-down">Meu Portfólio</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Adicione seus projetos aqui -->
                     <!-- Projeto 1 -->
-                    <div class="portfolio-card glass-effect rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 neon-box-shadow" data-aos="fade-up" data-tilt>
+                    <div class="portfolio-card glass-effect rounded-lg overflow-hidden flex flex-col transform hover:-translate-y-2 transition-transform duration-300 neon-box-shadow" data-aos="fade-up" data-tilt>
                         <img src="obfuscadeado.png" alt="Projeto 1" class="w-full h-48 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-cyan-400 mb-2">obfuscadeado</h3>
-                            <p class="text-gray-300 mb-4">Ofuscação: transforme seu código para torná-lo difícil de roubar ou copiar. Um Obfuscador JavaScript transformará todo o seu código-fonte, tornando-o virtualmente impossível de ler e entender. Embora o processo possa modificar instruções de métodos ou metadados, ele não altera a funcionalidade do programa.</p>
-                            <a href="https://obfuscadeado.vercel.app/" target="_blank" class="text-cyan-400 hover:text-white font-semibold">Ver Projeto &rarr;</a>
+                            <p class="text-gray-300 mb-4 flex-grow">Ofuscação: transforme seu código para torná-lo difícil de roubar ou copiar. Um Obfuscador JavaScript o tornará virtualmente impossível de ler.</p>
+                            <a href="https://obfuscadeado.vercel.app/" target="_blank" class="text-cyan-400 hover:text-white font-semibold mt-auto">Ver Projeto &rarr;</a>
                         </div>
                     </div>
                     <!-- Projeto 2 -->
-                    <div class="portfolio-card glass-effect rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 neon-box-shadow" data-aos="fade-up" data-aos-delay="200" data-tilt>
+                    <div class="portfolio-card glass-effect rounded-lg overflow-hidden flex flex-col transform hover:-translate-y-2 transition-transform duration-300 neon-box-shadow" data-aos="fade-up" data-aos-delay="200" data-tilt>
                         <img src="BBZ.png" alt="Projeto 2" class="w-full h-48 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-cyan-400 mb-2">BBZ Shop</h3>
-                            <p class="text-gray-300 mb-4">Projeto de loja de roupas, com Cadastro, login, criação de pedidos via Email, tudo utilizando Firebase.</p>
-                            <a href="https://bbz-shop.vercel.app/" target="_blank" class="text-cyan-400 hover:text-white font-semibold">Ver Projeto &rarr;</a>
+                            <p class="text-gray-300 mb-4 flex-grow">Projeto de loja de roupas, com Cadastro, login, criação de pedidos via Email, tudo utilizando Firebase.</p>
+                            <a href="https://bbz-shop.vercel.app/" target="_blank" class="text-cyan-400 hover:text-white font-semibold mt-auto">Ver Projeto &rarr;</a>
                         </div>
                     </div>
                     <!-- Projeto 3 -->
-                    <div class="portfolio-card glass-effect rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 neon-box-shadow" data-aos="fade-up" data-aos-delay="400" data-tilt>
-                        <img src="https://placehold.co/600x400/1a1a2e/ffff00?text=Projeto+3" alt="Projeto 3" class="w-full h-48 object-cover">
-                        <div class="p-6">
+                    <div class="portfolio-card glass-effect rounded-lg overflow-hidden flex flex-col transform hover:-translate-y-2 transition-transform duration-300 neon-box-shadow" data-aos="fade-up" data-aos-delay="400" data-tilt>
+                        <img src="https://placehold.co/600x400/1a1a2e/e0e0e0?text=Em+Breve" alt="Projeto 3" class="w-full h-48 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold text-cyan-400 mb-2">Em Breve</h3>
-                            <p class="text-gray-300 mb-4">Em Breve</p>
-                            <a href="#" target="_blank" class="text-cyan-400 hover:text-white font-semibold">Ver Projeto &rarr;</a>
+                            <p class="text-gray-300 mb-4 flex-grow">Mais projetos serão adicionados em breve.</p>
+                            <a href="#" class="text-cyan-400 hover:text-white font-semibold mt-auto cursor-not-allowed">Ver Projeto &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -266,7 +302,7 @@
 
         <!-- Seção Contato -->
         <section id="contato" class="py-20">
-            <div class="container mx-auto px-6 text-center">
+            <div class="container mx-auto px-4 sm:px-6 text-center">
                  <h2 class="text-4xl font-bold text-center mb-8 neon-text" data-aos="fade-down">Vamos Conversar?</h2>
                  <p class="text-gray-300 max-w-2xl mx-auto mb-12" data-aos="fade-up">
                     Estou sempre aberto a novas oportunidades e projetos desafiadores. Se você tem uma ideia, uma vaga ou simplesmente quer trocar uma ideia sobre tecnologia, não hesite em me contatar!
@@ -290,119 +326,74 @@
     </main>
 
     <footer class="text-center py-6">
-        <p class="text-gray-500">&copy; 2025 - Criado com por William Fagundes.</p>
+        <p class="text-gray-500">&copy; 2025 - Criado por William Fagundes.</p>
     </footer>
 
     <!-- Scripts JS -->
-    <!-- particles.js para o fundo animado -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- Typed.js para o efeito de digitação -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <!-- AOS (Animate on Scroll) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- vanilla-tilt.js para o efeito 3D nos cards -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
 
     <script>
-        // Inicialização do AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inicialização do AOS (Animate on Scroll)
+            AOS.init({
+                duration: 800, // Duração mais sutil
+                once: true,
+            });
 
-        // Configuração do Particles.js
-        particlesJS('particles-js', {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
+            // --- OTIMIZAÇÃO DE SCRIPTS PARA MOBILE ---
+            const isMobile = window.innerWidth < 768;
+
+            // Configuração do Particles.js com otimização para mobile
+            const particlesConfig = {
+                particles: {
+                    number: {
+                        value: isMobile ? 30 : 80, // Menos partículas no mobile
+                        density: { enable: true, value_area: 800 }
+                    },
+                    color: { value: "#00ffff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: "#00ffff", opacity: 0.2, width: 1 },
+                    move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: !isMobile, mode: "repulse" }, // Desativar hover no mobile
+                        onclick: { enable: true, mode: "push" },
+                        resize: true
+                    },
+                    modes: {
+                        repulse: { distance: 100, duration: 0.4 },
+                        push: { particles_nb: 4 }
                     }
                 },
-                "color": {
-                    "value": "#00ffff"
-                },
-                "shape": {
-                    "type": "circle",
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": true,
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#00ffff",
-                    "opacity": 0.2,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 2,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "repulse": {
-                        "distance": 100,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    }
-                }
-            },
-            "retina_detect": true
-        });
+                retina_detect: true
+            };
+            particlesJS('particles-js', particlesConfig);
 
-        // Configuração do Typed.js
-        var typed = new Typed('#typed-element', {
-            strings: ['Desenvolvedor Full-Stack', 'Especialista em Firebase', 'Entusiasta de JavaScript', 'Apaixonado por UX Design'],
-            typeSpeed: 50,
-            backSpeed: 30,
-            loop: true
-        });
-        
-        // Efeito de "blur" no header ao rolar a página
-        const header = document.querySelector('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('glass-effect');
-            } else {
-                header.classList.remove('glass-effect');
+            // Configuração do Typed.js
+            new Typed('#typed-element', {
+                strings: ['Desenvolvedor Full-Stack', 'Especialista em Firebase', 'Entusiasta de UX Design'],
+                typeSpeed: 50,
+                backSpeed: 30,
+                loop: true
+            });
+
+            // Inicializa o Vanilla-tilt.js apenas em DESKTOP
+            if (!isMobile) {
+                VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+                    max: 15,
+                    speed: 400,
+                    glare: true,
+                    "max-glare": 0.5,
+                });
             }
         });
-
-        // Inicialização do Vanilla-tilt.js
-        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-		    max: 15,
-		    speed: 400,
-            glare: true,
-            "max-glare": 0.5,
-	    });
-
     </script>
 </body>
 </html>
